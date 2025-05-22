@@ -19,7 +19,7 @@ class RendezvousDEchange(Generic[E, T]):
                 result = self.value
                 self.has_value = False
                 self.condition.notify()
-                return result  # tipo T
+                return result
             else:
                 temp = self.value
                 self.value = value

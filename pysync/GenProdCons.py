@@ -11,22 +11,22 @@ class GenProdCons(Generic[T]):
         self.size = size
         self.buffer = []
         self.lock = threading.Lock()
-        self.empty_slots = threading.Semaphore(size)  # Cuántos espacios libres hay
-        self.full_slots = threading.Semaphore(0)      # Cuántos elementos disponibles hay
+        self.empty_slots = threading.Semaphore(size)
+        self.full_slots = threading.Semaphore(0)
 
     def put(self, item: T):
-        self.empty_slots.acquire()   # Espera espacio libre
+        self.empty_slots.acquire()
         with self.lock:
             self.buffer.append(item)
-        self.full_slots.release()    # Señala elemento disponible
+        self.full_slots.release()
 
     def get(self) -> T:
-        self.full_slots.acquire()    # Espera elemento disponible
+        self.full_slots.acquire()
         with self.lock:
             item = self.buffer.pop(0)
-        self.empty_slots.release()   # Señala espacio libre
+        self.empty_slots.release()
         return item
-    
+
     def __len__(self):
         with self.lock:
             return len(self.buffer)
