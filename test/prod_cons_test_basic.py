@@ -3,9 +3,11 @@
 import os
 import unittest
 import importlib
+import sys
 
 expected_module = 'PRODCONSMODULE'
 default_module = 'pysyn'
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 if expected_module in os.environ:
     prod_cons_mdl = os.environ[expected_module]

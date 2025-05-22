@@ -5,7 +5,7 @@ E = TypeVar('E')
 T = TypeVar('T')
 
 class RendezvousDEchange(Generic[E, T]):
-    def _init_(self):
+    def __init__(self):
         self.condition = threading.Condition()
         self.value: E | None = None
         self.has_value = False

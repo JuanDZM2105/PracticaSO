@@ -17,7 +17,7 @@ RendezvousDEchange = prod_cons_imprt.RendezvousDEchange
 
 def producer(prod_cons, producer_id=0, sleep_time=0.5):
     i = 0
-    while i < 10:  # Limitamos iteraciones para prueba
+    while i < 10:
         print(f"[Producer {producer_id}] Produciendo valor: {i}")
         prod_cons.put(i)
         i += 1
